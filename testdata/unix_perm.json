@@ -1,0 +1,14 @@
+[
+    {
+        "Path" : "bin",
+        "Mode" : 2147484141
+    },  
+    {
+        "Path" : "bin/exec",
+        "Mode" : 493
+    },  
+    {
+        "Path" : "unix_perm.json",
+        "Mode" : 420
+    }
+]
