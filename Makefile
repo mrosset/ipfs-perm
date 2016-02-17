@@ -1,3 +1,4 @@
+
 all: test
 
 clean:
@@ -8,4 +9,5 @@ make:
 
 test: clean
 	go build
-	./ipfs-perm-add
+	./ipfs-perm add testdata
+	./ipfs-perm get QmfRz3rYH4ZBuksyo8acRYnVhMcPQsEVtPxo6VCQRMcepb

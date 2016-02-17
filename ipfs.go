@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/str1ngs/util/json"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -37,8 +38,35 @@ func Add(path string) error {
 		return err
 	}
 	os.Chdir("..")
-	cmd := exec.Command("ipfs", "add", "-n", "-r", path)
+	cmd := exec.Command("ipfs", "add", "-r", path)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
+}
+
+func Get(out string, hash string) error {
+	cmd := exec.Command("ipfs", "get", hash)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		return err
+	}
+	jf := filepath.Join(hash, "unix_perm.json")
+	entries := []FileEntry{}
+
+	err = json.Read(&entries, jf)
+	if err != nil {
+		return err
+	}
+	if err := os.Chdir(hash); err != nil {
+		return err
+	}
+	for _, e := range entries {
+		err = os.Chmod(e.Path, e.Mode)
+		if err != nil {
+			log.Println(err)
+		}
+	}
+	return nil
 }

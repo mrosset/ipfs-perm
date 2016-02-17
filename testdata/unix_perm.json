@@ -8,6 +8,10 @@
         "Mode" : 493
     },  
     {
+        "Path" : "bin/user",
+        "Mode" : 384
+    },  
+    {
         "Path" : "unix_perm.json",
         "Mode" : 420
     }
