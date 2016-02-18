@@ -66,7 +66,7 @@ func Get(out string, hash string) error {
 		return err
 	}
 	for _, e := range entries {
-		p := filepath.Join(hash, e.Path)
+		p := filepath.Join(out, e.Path)
 		err = os.Chmod(p, e.Mode)
 		if err != nil {
 			log.Println(err)
