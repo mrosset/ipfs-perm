@@ -11,7 +11,6 @@ func main() {
 		fmt.Println("requires an argument")
 		return
 	}
-	fmt.Println(os.Args[1])
 	switch os.Args[1] {
 	case "add":
 		err := Add(os.Args[2])

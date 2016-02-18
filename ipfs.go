@@ -26,13 +26,14 @@ func Add(path string) error {
 		if p == "." {
 			return nil
 		}
+		mode := info.Mode()
+		if mode == os.ModeSymlink {
+			return nil
+		}
 		entries = append(entries, FileEntry{p, info.Mode()})
 		return err
 	}
 	filepath.Walk(".", walkFn)
-	for _, e := range entries {
-		fmt.Println(e.Path, e.Mode)
-	}
 	err = json.Write(entries, "unix_perm.json")
 	if err != nil {
 		return err
