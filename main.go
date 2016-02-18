@@ -1,27 +1,39 @@
 package main
 
 import (
-	"fmt"
+	"errors"
+	"flag"
+	"github.com/str1ngs/util/console/command"
 	"log"
 	"os"
 )
 
+var (
+	elog = log.New(os.Stderr, "", log.Lshortfile)
+)
+
 func main() {
-	if len(os.Args) <= 1 {
-		fmt.Println("requires an argument")
-		return
+	flag.Parse()
+	command.Add("add", add, "add path to ipfs with saving permissions")
+	command.Add("get", get, "get hash from ipfs with permissions")
+	err := command.Run()
+	if err != nil {
+		elog.Fatal(err)
 	}
-	switch os.Args[1] {
-	case "add":
-		err := Add(os.Args[2])
-		if err != nil {
-			log.Fatal(err)
-		}
-	case "get":
-		err := Get(os.Args[2])
-		if err != nil {
-			log.Fatal(err)
-		}
+}
+
+func get() error {
+	if len(command.Args()) < 1 {
+		return errors.New("no hash specified")
 	}
-	return
+	hash := command.Args()[0]
+	return Get(hash)
+}
+
+func add() error {
+	if len(command.Args()) < 1 {
+		return errors.New("no directory specified")
+	}
+	path := command.Args()[0]
+	return Add(path)
 }

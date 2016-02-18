@@ -51,6 +51,7 @@ func Get(hash string) error {
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()
 	if err != nil {
+		elog.Println(err)
 		return err
 	}
 	jf := filepath.Join(hash, "unix_perm.json")
