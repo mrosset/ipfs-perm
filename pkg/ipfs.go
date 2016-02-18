@@ -58,7 +58,7 @@ func Get(out string, hash string) error {
 		elog.Println(err)
 		return err
 	}
-	jf := filepath.Join(hash, "unix_perm.json")
+	jf := filepath.Join(out, "unix_perm.json")
 	entries := []FileEntry{}
 
 	err = json.Read(&entries, jf)
@@ -69,7 +69,7 @@ func Get(out string, hash string) error {
 		p := filepath.Join(out, e.Path)
 		err = os.Chmod(p, e.Mode)
 		if err != nil {
-			log.Println(err)
+			elog.Println(err)
 		}
 	}
 	return nil
