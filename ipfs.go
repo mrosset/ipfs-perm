@@ -45,7 +45,7 @@ func Add(path string) error {
 	return cmd.Run()
 }
 
-func Get(out string, hash string) error {
+func Get(hash string) error {
 	cmd := exec.Command("ipfs", "get", hash)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -60,11 +60,9 @@ func Get(out string, hash string) error {
 	if err != nil {
 		return err
 	}
-	if err := os.Chdir(hash); err != nil {
-		return err
-	}
 	for _, e := range entries {
-		err = os.Chmod(e.Path, e.Mode)
+		p := filepath.Join(hash, e.Path)
+		err = os.Chmod(p, e.Mode)
 		if err != nil {
 			log.Println(err)
 		}

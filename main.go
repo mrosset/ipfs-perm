@@ -18,7 +18,7 @@ func main() {
 			log.Fatal(err)
 		}
 	case "get":
-		err := Get(".", os.Args[2])
+		err := Get(os.Args[2])
 		if err != nil {
 			log.Fatal(err)
 		}
