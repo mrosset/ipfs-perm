@@ -4,6 +4,10 @@
         "Mode" : 2147484141
     },  
     {
+        "Path" : "bin/.hidden",
+        "Mode" : 420
+    },  
+    {
         "Path" : "bin/exec",
         "Mode" : 493
     },  

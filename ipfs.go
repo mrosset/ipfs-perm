@@ -39,7 +39,7 @@ func Add(path string) error {
 		return err
 	}
 	os.Chdir("..")
-	cmd := exec.Command("ipfs", "add", "-r", path)
+	cmd := exec.Command("ipfs", "add", "-r", "-H", path)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
