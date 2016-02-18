@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"flag"
+	"github.com/str1ngs/ipfs-perm/pkg"
 	"github.com/str1ngs/util/console/command"
 	"log"
 	"os"
@@ -27,7 +28,7 @@ func get() error {
 		return errors.New("no hash specified")
 	}
 	hash := command.Args()[0]
-	return Get(hash)
+	return perm.Get(hash, hash)
 }
 
 func add() error {
@@ -35,5 +36,5 @@ func add() error {
 		return errors.New("no directory specified")
 	}
 	path := command.Args()[0]
-	return Add(path)
+	return perm.Add(path)
 }

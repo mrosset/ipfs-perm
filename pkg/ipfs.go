@@ -1,4 +1,4 @@
-package main
+package perm
 
 import (
 	"fmt"
@@ -7,6 +7,10 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+)
+
+var (
+	elog = log.New(os.Stderr, "", log.Lshortfile)
 )
 
 type FileEntry struct {
@@ -45,8 +49,8 @@ func Add(path string) error {
 	return cmd.Run()
 }
 
-func Get(hash string) error {
-	cmd := exec.Command("ipfs", "get", hash)
+func Get(out string, hash string) error {
+	cmd := exec.Command("ipfs", "get", "-o", out, hash)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()

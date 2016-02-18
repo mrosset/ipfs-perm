@@ -1,0 +1,26 @@
+[
+    {
+        "Path" : "bin",
+        "Mode" : 2147484141
+    },  
+    {
+        "Path" : "bin/.hidden",
+        "Mode" : 420
+    },  
+    {
+        "Path" : "bin/exec",
+        "Mode" : 493
+    },  
+    {
+        "Path" : "bin/link",
+        "Mode" : 134218239
+    },  
+    {
+        "Path" : "bin/user",
+        "Mode" : 420
+    },  
+    {
+        "Path" : "unix_perm.json",
+        "Mode" : 420
+    }
+]
